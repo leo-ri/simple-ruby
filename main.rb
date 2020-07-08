@@ -65,7 +65,9 @@ end
 
 def load_mongo
   services = JSON.parse(ENV["VCAP_SERVICES"])
-  credentials = services["mongodb-atlas-aws"][0]["credentials"]
+  #credentials = services["mongodb-atlas-aws"][0]["credentials"]
+  credentials = services["mongodb-atlas-template"][0]["credentials"] #TODO form service name
+
   base = credentials["uri"]
   uri = "mongodb+srv://"+credentials["username"]+":"+credentials["password"]+"@"+base[14..credentials["uri"].length]+"/test"
   client = Mongo::Client.new(uri)
