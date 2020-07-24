@@ -68,7 +68,6 @@ def load_mongo
   #credentials = services["mongodb-atlas-aws"][0]["credentials"]
   credentials = services["mongodb-atlas-template"][0]["credentials"] #TODO form service name
 
-  base = credentials["uri"]
-  uri = "mongodb+srv://"+credentials["username"]+":"+credentials["password"]+"@"+base[14..credentials["uri"].length]+"/test"
+  uri = credentials["connectionString"]
   client = Mongo::Client.new(uri)
 end
